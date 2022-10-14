@@ -22,3 +22,7 @@ nav a:hover{
 #banner-content p{
     margin-left: 5px;
 }
+.choice
+{
+    background: linear-gradient(rgba(211, 250, 179, 0.3),rgba(193, 238, 158, 0.6)),url(/resources/images/pic05.jpg);
+}
