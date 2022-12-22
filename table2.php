@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true)
+{
+  header("location : home.html");
+  exit;
+}
+?>
 <!doctype html>
  <html lang="en">
  <head>
@@ -56,9 +64,9 @@
                     echo "
                     <tr>
                         <td scope=\"col\">".$row["SNo."]."</td>
-                        <td scope=\"col\">".$row["Crop Name"]."</td>
+                        <td scope=\"col\">".$row["Crop_Name"]."</td>
                         <td scope=\"col\">".$row["Price"]."</td>
-                        <td scope=\"col\">".$row["Company Name"]."</td>
+                        <td scope=\"col\">".$row["Company_Name"]."</td>
                     </tr>";
                 } 
              ?>
@@ -66,6 +74,29 @@
      </table>
             </div>
             </div>
+            </div>
+            <p>Select the crop which you want to sell</p>
+            <form action="private_calculation.php" method = "POST">            
+
+                <div>Crop: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<select name="crop">
+                <option value="Rice">Rice</option>
+                <option value="Wheat">Wheat</option>
+                <option value="Barley">Barley</option>
+                <option value="Bajra">Potato</option>
+                </select><br><br></div>
+
+                <div>Company: &nbsp; &nbsp; &nbsp; &nbsp;<select name="company">
+                <option value="TATA">TATA</option>
+                <option value="ITC">ITC</option>
+                <option value="Nestle">Nestle</option>
+                <option value="Kissan">Kissan</option>
+                </select><br><br></div>
+
+                Quantity: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="text" name="quantity" placeholder = "(In Quintals)" /></label>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+            </form>
             </div>
 </body>
  </html>

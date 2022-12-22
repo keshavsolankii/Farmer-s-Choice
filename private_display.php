@@ -1,11 +1,3 @@
-<?php
-session_start();
-if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true)
-{
-  header("location : home.html");
-  exit;
-}
-?>
 <!doctype html>
  <html lang="en">
  <head>
@@ -34,7 +26,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true)
  <div style = "padding: 50px;" class="body">
 <div class = "card">
 <div class = "card-header">
-    RECORDS OF GOVERNMENT PRICE
+    RECORDS OF PRIVATE PRICE
 </div>
 
 <div class = "card-body">
@@ -44,7 +36,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true)
                 <th>SNo.</th>
                 <th>Crop Name</th>
                 <th>Price</th>
-                <th>State</th>
+                <th>Company Name</th>
              </tr>
         </thead>
          <tbody>
@@ -53,7 +45,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true)
              if($conn->connect_error){
                  die('Connection Failed: '.$conn->connect_error);
              }
-             $sql = "SELECT *FROM government";
+             $sql = "SELECT *FROM private";
              $results = $conn->query($sql);
              
              if(!$results) {
@@ -66,7 +58,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true)
                         <td scope=\"col\">".$row["SNo."]."</td>
                         <td scope=\"col\">".$row["Crop_Name"]."</td>
                         <td scope=\"col\">".$row["Price"]."</td>
-                        <td scope=\"col\">".$row["State"]."</td>
+                        <td scope=\"col\">".$row["Company_Name"]."</td>
                     </tr>";
                 } 
              ?>
@@ -74,28 +66,6 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true)
      </table>
             </div>
             </div>
-            <p>Select the crop which you want to sell</p>
-            <form action="govt_calculation.php" method = "POST">            
-
-                <div>Crop: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<select name="crop">
-                <option value="Potato">Potato</option>
-                <option value="Rice">Rice</option>
-                <option value="Wheat">Wheat</option>
-                <option value="Bajra">Bajra</option>
-                </select><br><br></div>
-
-                <div>Government: &nbsp; <select name="govt">
-                <option value="Uttar Pradesh">Uttar Pradesh</option>
-                <option value="Madhya Pradesh">Madhya Pradesh</option>
-                <option value="Haryana">Haryana</option>
-                </select><br><br></div>
-
-                Quantity: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="text" name="quantity" placeholder = "(In Quintals)" /></label>
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-
-            </form>
             </div>
-    
 </body>
  </html>
